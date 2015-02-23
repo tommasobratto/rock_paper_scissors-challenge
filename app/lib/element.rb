@@ -8,29 +8,22 @@ class Element
   end
 
   def self.rock
-    new(:name => "rock", :loses_to => "paper")
+    new(:name => :rock, :loses_to => :paper)
   end
 
   def self.paper
-    new(:name => "paper", :loses_to => "scissors")
+    new(:name => :paper, :loses_to => :scissors)
   end
 
   def self.scissors
-    new(:name => "scissors", :loses_to => "rock")
+    new(:name => :scissors, :loses_to => :rock)
   end 
 
   def confront(element)
-    if element.loses_to == self.name 
-      @win = true 
-    elsif element.name == self.name
-      @win = nil
-    else 
-      @win = false
-    end
+    element.loses_to == self.name ? @win = true : @win = false 
   end
 
   def win?
     @win
   end
-
 end

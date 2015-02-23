@@ -18,6 +18,9 @@ class Rock_paper_scissors < Sinatra::Base
 
   post '/' do
     @user_name = params[:name]
+    if @user_name.empty?
+      redirect '/'
+    end
     @player = Player.new(@user_name)
     session[:player] = @player
     puts @player.inspect
@@ -28,39 +31,19 @@ class Rock_paper_scissors < Sinatra::Base
     erb :game
   end
 
-  post '/game' do # This function is a huge mess of code, still have to work on it
+  post '/game' do 
+    session[:game] = game
     @player = session[:player]
     session[:cpu] = cpu
+    game = Game.new(@player, cpu)
     cpu.add_element(rock, paper, scissors)
     element_chosen = params[:element]
 
-    if element_chosen == 'rock'
-      element = rock
-    elsif element_chosen == 'paper'
-      element = paper
-    elsif element_chosen == 'scissors'
-      element = scissors
-    else
-      redirect '/game'
-    end 
-
-    player_move = @player.select_element(element)
-    cpu_move = cpu.random_selection
-    player_move.confront(cpu_move)
-    outcome = @player.win?
-    @cpu_selection = cpu.element_selected.name
-    @player_selection = @player.element_selected.name
-    
-    if outcome == true
-      @win = 'You win!'
-      erb :result
-    elsif outcome == false
-      @lose = 'You lose!'
-      erb :result
-    else 
-      @tie = 'Tie!'
-      erb :result
-    end
+    game.player_selection(element_chosen)
+    game.cpu_selection
+    game.battle
+    game.outcome
+    game.draw?
   end
 
   get '/result' do
