@@ -2,6 +2,7 @@ require 'sinatra/base'
 require_relative './app/lib/player'
 require_relative './app/lib/element'
 require_relative './app/lib/ai'
+require_relative './app/lib/game'
 
 class Rock_paper_scissors < Sinatra::Base
 
