@@ -1,29 +1,36 @@
 class Game
 
-  attr_reader: :cpu, :player, :player_choice, :cpu_choice
+  attr_reader :player, :player_choice, :cpu_choice, :confrontation
 
-  def initialize(players = {})
-    @player = players[:player]
-    @cpu = players[:cpu]
-  end
+   CONFRONTATION = {
+      :rock => { :paper => :lose, :scissors => :win },
+      :paper => { :scissors => :lose, :paper => :win },
+      :scissors => { :rock => :lose, :scissors => :win }
+    }
 
-  def player_selection(element)
-    @player_choice = player.select_element(element)
-  end
-
-  def battle
-    @player_choice.confront(@cpu_choice)
-  end
-
-  def cpu_selection
-    @cpu_choice = cpu.random_selection
+  def add_players(player, cpu)
+    @player = player
+    @cpu = cpu
   end
 
   def outcome
-    !draw? && player.win? ? true : false
+    player_choice = @player.element_selected
+    cpu_choice = @cpu.choice
+    outcome = CONFRONTATION[player_choice][cpu_choice]
+    outcome_message(outcome)
   end
 
-  def draw?
-    @player_choice == @cpu_choice ? true : false
+  def outcome_message(outcome)
+    if outcome == :win
+      true
+    elsif outcome == :lose
+      false
+    else 
+      nil
+    end
   end
+
+  # def draw?
+  #   @player_choice == @cpu_choice ? true : false
+  # end
 end

@@ -1,14 +1,8 @@
-require_relative 'Player'
+class Ai 
 
-class Ai < Player
+  ELEMENTS_AVAILABLE = [ :rock, :paper, :scissors ]
 
-  attr_reader :elements_available
-
-  def add_element(*element)
-    @elements_available = [*element]
-  end
-
-  def random_selection
-    @element_selected = elements_available.shuffle.first
+  def choice
+    ELEMENTS_AVAILABLE.sample
   end
 end

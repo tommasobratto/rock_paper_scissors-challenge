@@ -1,15 +1,15 @@
 <div>
   <% if @win %>
-  <div><p>You chose <%= @player_selection %></p></div>
-  <p>The opponent has chosen <%= @cpu_selection %></p>
+  <div><p>You chose <%= @player_choice %></p></div>
+  <p>The opponent has chosen <%= @cpu_choice %></p>
   <h3><%= @win %></h3>
 <% elsif @lose %>
-  <p>You chose <%= @player_selection %></p>
-  <p>The opponent has chosen <%= @cpu_selection %></p>
+  <p>You chose <%= @player_choice %></p>
+  <p>The opponent has chosen <%= @cpu_choice %></p>
   <h3><%= @lose %></h3>
 <% else %>
-  <p>You chose <%= @player_selection %></p>
-  <p>The opponent has chosen <%= @cpu_selection %></p>
+  <p>You chose <%= @player_choice %></p>
+  <p>The opponent has chosen <%= @cpu_choice %></p>
   <h3><%= @tie %></h3>
 <% end %>
 </div>
