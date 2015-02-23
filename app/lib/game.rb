@@ -1,6 +1,6 @@
 class Game
 
-  attr_reader :player, :player_choice, :cpu_choice, :confrontation
+  attr_reader :player, :confrontation
 
    CONFRONTATION = {
       :rock => { :paper => :lose, :scissors => :win },
