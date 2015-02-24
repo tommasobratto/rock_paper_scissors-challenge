@@ -16,9 +16,11 @@ class Rock_paper_scissors < Sinatra::Base
 
   post '/' do
     @user_name = params[:name]
+    
     if @user_name.empty?
       redirect '/'
     end
+    
     @player = Player.new(@user_name)
     session[:player] = @player
     puts @player.inspect
@@ -34,11 +36,12 @@ class Rock_paper_scissors < Sinatra::Base
     @player = session[:player]
     session[:cpu] = cpu
   
+    puts game.inspect
     game.add_players(@player, cpu)
     element_chosen = params[:element]
     @player_choice = @player.choice(element_chosen)
-    @cpu_choice = cpu.choice
     outcome = game.outcome
+    @cpu_choice = cpu.element_selected
 
     if outcome == true
       @win = "You won!"

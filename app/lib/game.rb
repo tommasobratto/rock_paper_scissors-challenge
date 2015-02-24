@@ -1,11 +1,11 @@
 class Game
 
-  attr_reader :player, :confrontation
+  attr_reader :player, :cpu
 
    CONFRONTATION = {
       :rock => { :paper => :lose, :scissors => :win },
-      :paper => { :scissors => :lose, :paper => :win },
-      :scissors => { :rock => :lose, :scissors => :win }
+      :paper => { :scissors => :lose, :rock => :win },
+      :scissors => { :rock => :lose, :paper => :win }
     }
 
   def add_players(player, cpu)
@@ -16,17 +16,17 @@ class Game
   def outcome
     player_choice = @player.element_selected
     cpu_choice = @cpu.choice
-    outcome = CONFRONTATION[player_choice][cpu_choice]
-    outcome_message(outcome)
+    battle = CONFRONTATION[player_choice][cpu_choice]
+    outcome_message(battle)
   end
 
-  def outcome_message(outcome)
-    if outcome == :win
-      true
-    elsif outcome == :lose
-      false
+  def outcome_message(battle)
+    if battle == :win
+      return true
+    elsif battle == :lose
+      return false
     else 
-      nil
+      return nil
     end
   end
 

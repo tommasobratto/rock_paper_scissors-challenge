@@ -1,8 +1,10 @@
 class Ai 
 
+  attr_reader :element_selected
+
   ELEMENTS_AVAILABLE = [ :rock, :paper, :scissors ]
 
   def choice
-    ELEMENTS_AVAILABLE.sample
+    @element_selected = ELEMENTS_AVAILABLE.sample
   end
 end
