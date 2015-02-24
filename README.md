@@ -29,3 +29,7 @@ Use the _special_ rules ( _you can find them here http://en.wikipedia.org/wiki/R
 - Rock beats Scissors
 - Scissors beats Paper
 - Paper beats Rock
+
+## Notes
+
+The "Apprentice" branch uses suggestions from our lectures and 121 reviews to completely redesign and refactor the application, hence the code's different appearance from the 'Master' branch.
